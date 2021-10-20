@@ -6933,8 +6933,7 @@ public class SSLCertificateServiceTest {
 		metadataPathDeleteResponse.setSuccess(true);
 		when(reqProcessor.process(eq("/delete"), anyObject(), anyString())).thenReturn(metadataPathDeleteResponse);
 		
-		ResponseEntity<?> enrollResponse = sSLCertificateService
-				.deleteCertificate(token, certType, certName, userDetail);
+		ResponseEntity<?> enrollResponse = sSLCertificateService.deleteCertificate(token, certType, certName, userDetail);
 		assertNotNull(enrollResponse);		
 	}
 	

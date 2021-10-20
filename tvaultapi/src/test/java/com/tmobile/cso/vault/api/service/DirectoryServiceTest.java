@@ -57,6 +57,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.when;
 
@@ -546,4 +547,28 @@ public class DirectoryServiceTest {
 
         assertEquals(responseEntityExpected.getBody().getData().getValues()[0], directoryUser1);
     }
+    @Test
+    public void testGetAllUsersDetailByNtIds_failure() {
+
+        DirectoryUser directoryUser = new DirectoryUser();
+
+        directoryUser.setUserName("testUser");
+
+        List<DirectoryUser> persons = new ArrayList<>();
+
+
+        DirectoryObjects users = new DirectoryObjects();
+        DirectoryObjectsList usersList = new DirectoryObjectsList();
+        usersList.setValues(persons.toArray(new DirectoryUser[persons.size()]));
+        users.setData(usersList);
+        ResponseEntity<DirectoryObjects> responseEntityExpected = ResponseEntity.status(HttpStatus.OK).body(users);
+
+        when(ldapTemplate.search(Mockito.anyString(), Mockito.anyString(), Mockito.any(AttributesMapper.class))).thenReturn(persons);
+        ResponseEntity<DirectoryObjects> responseEntity = directoryService.getAllUsersDetailByNtIds("testUser");
+
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+
+    }
+
+
 }
