@@ -5573,20 +5573,16 @@ public class IAMServiceAccountServiceTest {
 	@Test
 	public void test_readFolders_failurenotfound() throws IOException {
 		String token = "5PDrOhsy4ig8L3EpsJZSLAMg";
-		String path = "iamsvcacc/123456789012_testiamsvcacc01";
-		ResponseEntity<String> responseEntityExpected = ResponseEntity.status(HttpStatus.OK).body("{\"folders\":[\"testiamsvcacc01_01\",\"testiamsvcacc01_02\"],\"path\":\"123456789012_testiamsvcacc01\",\"iamsvcaccName\":\"testiamsvcacc01\"}");
 		when(reqProcessor.process(eq("/iam/list"),Mockito.any(),eq(token))).thenReturn(getMockResponse(HttpStatus.NOT_FOUND, false, "null"));
-
+		String path = "iamsvcacc/123456789012_testiamsvcacc01";
 		ResponseEntity<String> responseEntity = iamServiceAccountsService.readFolders(token, path);
 		assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
-
 	}
 	@Test
 	public void test_readFolders_failure_internalservererror() throws IOException {
 		String token = "5PDrOhsy4ig8L3EpsJZSLAMg";
-		String path = "iamsvcacc/123456789012_testiamsvcacc01";
-		ResponseEntity<String> responseEntityExpected = ResponseEntity.status(HttpStatus.OK).body("{\"folders\":[\"testiamsvcacc01_01\",\"testiamsvcacc01_02\"],\"path\":\"123456789012_testiamsvcacc01\",\"iamsvcaccName\":\"testiamsvcacc01\"}");
 		when(reqProcessor.process(eq("/iam/list"),Mockito.any(),eq(token))).thenReturn(getMockResponse(HttpStatus.INTERNAL_SERVER_ERROR, false, "{\"errors\":[\"1 error occurred:\n\t* internalservererror\n\n\"]}"));
+		String path = "iamsvcacc/123456789012_testiamsvcacc01";
 		ResponseEntity<String> responseEntity = iamServiceAccountsService.readFolders(token, path);
 		assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
 
