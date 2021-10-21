@@ -5533,8 +5533,7 @@ public class IAMServiceAccountServiceTest {
 		token = userDetails.getClientToken();
 		IAMServiceAccountGroup iamSvcAccGroup = new IAMServiceAccountGroup("testaccount", "group1", "write", "1234567");
 		userDetails = getMockUser(false);
-		ResponseEntity<String> responseEntityExpected = ResponseEntity.status(HttpStatus.OK)
-				.body("{\"messages\":[\"Group is successfully removed from IAM Service Account\"]}");
+		ResponseEntity<String> responseEntityExpected = ResponseEntity.status(HttpStatus.OK).body("{\"messages\":[\"Group is successfully removed from IAM Service Account\"]}");
 		Response responseNoContent = getMockResponse(HttpStatus.NO_CONTENT, true, "");
 
 		String[] policies = { "o_iamsvcacc_1234567_testaccount" };
@@ -5555,8 +5554,7 @@ public class IAMServiceAccountServiceTest {
 		when(ControllerUtil.configureLDAPGroup(any(), any(), any())).thenReturn(responseNoContent);
 		when(ControllerUtil.updateMetadata(any(), eq(token))).thenReturn(responseNoContent);
 		when(tokenUtils.getSelfServiceToken()).thenReturn(token);
-		when(reqProcessor.process(eq("/sdb"), Mockito.any(), eq(token))).thenReturn(getMockResponse(HttpStatus.OK, true,
-				"{\"data\":{\"isActivated\":true,\"managedBy\":\"normaluser\",\"name\":\"svc_vault_test5\",\"users\":{\"normaluser\":\"sudo\"}}}"));
+		when(reqProcessor.process(eq("/sdb"), Mockito.any(), eq(token))).thenReturn(getMockResponse(HttpStatus.OK, true,"{\"data\":{\"isActivated\":true,\"managedBy\":\"normaluser\",\"name\":\"svc_vault_test5\",\"users\":{\"normaluser\":\"sudo\"}}}"));
 		String metdataJsonString = "{\"data\":{\"groups\": {\"group1\": \"write\"},\"app-roles\":{\"selfserviceoidcsupportrole\":\"read\"},\"application_id\":1222,\"application_name\":\"T-Vault\",\"application_tag\":\"TVT\",\"awsAccountId\":\"1234567\",\"awsAccountName\":\"AWS-SEC\",\"createdAtEpoch\":1086073200000,\"isActivated\":true,\"owner_email\":\"test@testmail.com\",\"owner_ntid\":\"testid\",\"secret\":[{\"accessKeyId\":\"1212zdasd\",\"expiryDuration\":\"1086073200000\"}],\"userName\":\"testaccount\",\"users\":{\"testid\":\"write\"}}}";
 		Response readResponse = getMockResponse(HttpStatus.OK, true, metdataJsonString);
 		when(reqProcessor.process(eq("/iamsvcacct"),Mockito.any(),eq(token))).thenReturn(readResponse);
@@ -5576,8 +5574,7 @@ public class IAMServiceAccountServiceTest {
 	public void test_readFolders_failurenotfound() throws IOException {
 		String token = "5PDrOhsy4ig8L3EpsJZSLAMg";
 		String path = "iamsvcacc/123456789012_testiamsvcacc01";
-		ResponseEntity<String> responseEntityExpected = ResponseEntity.status(HttpStatus.OK).body(
-				"{\"folders\":[\"testiamsvcacc01_01\",\"testiamsvcacc01_02\"],\"path\":\"123456789012_testiamsvcacc01\",\"iamsvcaccName\":\"testiamsvcacc01\"}");
+		ResponseEntity<String> responseEntityExpected = ResponseEntity.status(HttpStatus.OK).body("{\"folders\":[\"testiamsvcacc01_01\",\"testiamsvcacc01_02\"],\"path\":\"123456789012_testiamsvcacc01\",\"iamsvcaccName\":\"testiamsvcacc01\"}");
 		when(reqProcessor.process(eq("/iam/list"),Mockito.any(),eq(token))).thenReturn(getMockResponse(HttpStatus.NOT_FOUND, false, "null"));
 
 		ResponseEntity<String> responseEntity = iamServiceAccountsService.readFolders(token, path);
@@ -5588,8 +5585,7 @@ public class IAMServiceAccountServiceTest {
 	public void test_readFolders_failure_internalservererror() throws IOException {
 		String token = "5PDrOhsy4ig8L3EpsJZSLAMg";
 		String path = "iamsvcacc/123456789012_testiamsvcacc01";
-		ResponseEntity<String> responseEntityExpected = ResponseEntity.status(HttpStatus.OK).body(
-				"{\"folders\":[\"testiamsvcacc01_01\",\"testiamsvcacc01_02\"],\"path\":\"123456789012_testiamsvcacc01\",\"iamsvcaccName\":\"testiamsvcacc01\"}");
+		ResponseEntity<String> responseEntityExpected = ResponseEntity.status(HttpStatus.OK).body("{\"folders\":[\"testiamsvcacc01_01\",\"testiamsvcacc01_02\"],\"path\":\"123456789012_testiamsvcacc01\",\"iamsvcaccName\":\"testiamsvcacc01\"}");
 		when(reqProcessor.process(eq("/iam/list"),Mockito.any(),eq(token))).thenReturn(getMockResponse(HttpStatus.INTERNAL_SERVER_ERROR, false, "{\"errors\":[\"1 error occurred:\n\t* internalservererror\n\n\"]}"));
 		ResponseEntity<String> responseEntity = iamServiceAccountsService.readFolders(token, path);
 		assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
@@ -5707,10 +5703,7 @@ public class IAMServiceAccountServiceTest {
 
 		String [] policies = {"o_iamsvcacc_1234568990_testsvcname"};
 		when(policyUtils.getCurrentPolicies(token, userDetails.getUsername(), userDetails)).thenReturn(policies);
-		String responseBody = "{ \"bound_account_id\": [ \"1234567890123\"],\"bound_ami_id\": [\"ami-fce3c696\" ], \"bound_iam_instance_profile_arn\": [\n" +
-				"  \"arn:aws:iam::877677878:instance-profile/exampleinstanceprofile\" ], \"bound_iam_role_arn\": [\"arn:aws:iam::8987887:role/test-role\" ], " +
-				"\"bound_vpc_id\": [    \"vpc-2f09a348\"], \"bound_subnet_id\": [ \"subnet-1122aabb\"],\"bound_region\": [\"us-east-2\"],\"policies\":" +
-				" [ \"\\\"[prod\",\"dev\\\"]\" ], \"auth_type\":\"ec2\"}";
+		String responseBody = "{ \"bound_account_id\": [ \"1234567890123\"],\"bound_ami_id\": [\"ami-fce3c696\" ], \"bound_iam_instance_profile_arn\": [\n" +"  \"arn:aws:iam::877677878:instance-profile/exampleinstanceprofile\" ], \"bound_iam_role_arn\": [\"arn:aws:iam::8987887:role/test-role\" ], " +"\"bound_vpc_id\": [    \"vpc-2f09a348\"], \"bound_subnet_id\": [ \"subnet-1122aabb\"],\"bound_region\": [\"us-east-2\"],\"policies\":" +" [ \"\\\"[prod\",\"dev\\\"]\" ], \"auth_type\":\"ec2\"}";
 		Response awsRoleResponse = getMockResponse(HttpStatus.OK, true, responseBody);
 		when(reqProcessor.process("/auth/aws/roles","{\"role\":\"role1\"}",token)).thenReturn(awsRoleResponse);
 		Response configureAWSRoleResponse = getMockResponse(HttpStatus.OK, true, "");
@@ -5736,10 +5729,7 @@ public class IAMServiceAccountServiceTest {
 
 		String [] policies = {"o_iamsvcacc_1234568990_testsvcname"};
 		when(policyUtils.getCurrentPolicies(token, userDetails.getUsername(), userDetails)).thenReturn(policies);
-		String responseBody = "{ \"bound_account_id\": [ \"1234567890123\"],\"bound_ami_id\": [\"ami-fce3c696\" ], \"bound_iam_instance_profile_arn\": [\n" +
-				"  \"arn:aws:iam::877677878:instance-profile/exampleinstanceprofile\" ], \"bound_iam_role_arn\": [\"arn:aws:iam::8987887:role/test-role\" ], " +
-				"\"bound_vpc_id\": [    \"vpc-2f09a348\"], \"bound_subnet_id\": [ \"subnet-1122aabb\"],\"bound_region\": [\"us-east-2\"],\"policies\":" +
-				" [ \"w_svcacct_testsvcname\" ], \"auth_type\":\"iam\"}";
+		String responseBody = "{ \"bound_account_id\": [ \"1234567890123\"],\"bound_ami_id\": [\"ami-fce3c696\" ], \"bound_iam_instance_profile_arn\": [\n" +"  \"arn:aws:iam::877677878:instance-profile/exampleinstanceprofile\" ], \"bound_iam_role_arn\": [\"arn:aws:iam::8987887:role/test-role\" ], " +"\"bound_vpc_id\": [    \"vpc-2f09a348\"], \"bound_subnet_id\": [ \"subnet-1122aabb\"],\"bound_region\": [\"us-east-2\"],\"policies\":" +" [ \"w_svcacct_testsvcname\" ], \"auth_type\":\"iam\"}";
 		Response awsRoleResponse = getMockResponse(HttpStatus.OK, true, responseBody);
 		when(reqProcessor.process("/auth/aws/roles","{\"role\":\"role1\"}",token)).thenReturn(awsRoleResponse);
 		Response configureAWSRoleResponse = getMockResponse(HttpStatus.OK, true, "");

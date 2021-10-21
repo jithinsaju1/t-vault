@@ -3551,18 +3551,13 @@ public class SelfSupportServiceTest {
         String currentOwnerNtid = "normaluser";
         String path = "users/safe1";
         SafeTransferRequest safeTransferRequest = new SafeTransferRequest("safe1", "users","test.user@company.com");
-
         SafeBasicDetails safeBasicDetails = new SafeBasicDetails("mysafe01", "youremail@yourcompany.com", null, "My first safe", currentOwnerNtid,"tvt");
         Safe safe = new Safe("shared/mysafe01",safeBasicDetails);
         when(safeUtils.getSafeMetaData(Mockito.any(), eq("users"), eq("safe1"))).thenReturn(safe);
-
         when(directoryService.getNtidForUser(newOwnerEmail)).thenReturn(newOwnerNtid);
-
-
         String jsonStr = "{  \"path\": \"shared/mysafe01\",  \"username\": \"testuser1\",  \"access\": \"write\"}";
         Response userResponse = getMockResponse(HttpStatus.OK, true, "{\"data\":{\"bound_cidrs\":[],\"max_ttl\":0,\"policies\":[\"default\",\"w_shared_mysafe01\",\"w_shared_mysafe02\"],\"ttl\":0,\"groups\":\"admin\"}}");
         Response responseNoContent = getMockResponse(HttpStatus.NO_CONTENT, true, "");
-
         SafeUser safeUser = new SafeUser(path, currentOwnerNtid,"sudo");
         when(JSONUtil.getJSON(safeUser)).thenReturn(jsonStr);
         when(ControllerUtil.isValidSafePath(path)).thenReturn(true);
@@ -3613,15 +3608,13 @@ public class SelfSupportServiceTest {
         oidcEntityResponse.setPolicies(policies);
         when(OIDCUtil.fetchMountAccessorForOidc(token)).thenReturn(mountAccessor);
 
-        ResponseEntity<OIDCEntityResponse> responseEntity2 = ResponseEntity.status(HttpStatus.OK)
-                .body(oidcEntityResponse);
+        ResponseEntity<OIDCEntityResponse> responseEntity2 = ResponseEntity.status(HttpStatus.OK) .body(oidcEntityResponse);
         when(OIDCUtil.oidcFetchEntityDetails(token, currentOwnerNtid, userDetails, true)).thenReturn(responseEntity2);
 
         when(tokenUtils.getSelfServiceTokenWithAppRole()).thenReturn(token);
 
         Response responseEntity3 = getMockResponse(HttpStatus.NO_CONTENT, true, "{\"data\": [\"safeadmin\",\"vaultadmin\"]]");
-        when(OIDCUtil.updateOIDCEntity(policies, oidcEntityResponse.getEntityName()))
-                .thenReturn(responseEntity3);
+        when(OIDCUtil.updateOIDCEntity(policies, oidcEntityResponse.getEntityName())).thenReturn(responseEntity3);
 
         ResponseEntity<String> response = ResponseEntity.status(HttpStatus.OK).body("{\"messages\":[\"User is successfully associated \"]}");
         when(safesService.addUserToSafe(eq(token), Mockito.any(), eq(userDetails), eq(true))).thenReturn(response);
@@ -3636,12 +3629,9 @@ public class SelfSupportServiceTest {
             e.printStackTrace();
         }
         when(ControllerUtil.parseJson(Mockito.any())).thenReturn(reqparams);
-
         when(reqProcessor.process(eq("/sdb/update"),Mockito.any(),eq(token))).thenReturn(responseNoContent);
-
         ResponseEntity<String> responseEntityExpected = ResponseEntity.status(HttpStatus.OK).body("{\"Message\":\"User association is removed \"}");
         ResponseEntity<String> responseEntity = selfSupportService.removeSudoUserFromSafe(token, safeUser, userDetails);
-
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(responseEntityExpected, responseEntity);
     }

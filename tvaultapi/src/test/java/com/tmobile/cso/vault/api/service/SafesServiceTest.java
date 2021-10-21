@@ -3178,29 +3178,7 @@ public class SafesServiceTest {
 
         String jsonStr = "{\"path\":\"shared/mysafe01\",\"data\":{\"name\":\"mysafe01\",\"owner\":\"youremail@yourcompany.com\",\"type\":\"\",\"description\":\"My first safe\"}}";
         String metadatajson = "{\"path\":\"metadata/shared/mysafe01\",\"data\":{\"name\":\"mysafe01\",\"owner\":\"youremail@yourcompany.com\",\"type\":\"\",\"description\":\"My first safe\",\"aws-roles\":null,\"groups\":null,\"users\":null}}";
-        String workloadApiResponse = "{\n" +
-                "\n" +
-                "\t\"kind\": \"Application\",\n" +
-                "\t\"spec\": {\n" +
-                "\t\t\"akmid\": \"103001\",\n" +
-                "\t\t\"brtContactEmail\": \" testspec@mail.com\",\n" +
-                "\t\t\"businessUnit\": \"\",\n" +
-                "\t\t\"classification\": \"\",\n" +
-                "\t\t\"directorEmail\": \"abc.joe@mail.com\",\n" +
-                "\t\t\"directorName\": \"abc amith\",\n" +
-                "\t\t\"executiveSponsor\": \"Dar Web\",\n" +
-                "\t\t\"opsContactEmail\": \"rick.nick@test.com\",\n" +
-                "\t\t\"organizationalUnits\": [\"tvt\"],\n" +
-                "\t\t\"projectLeadEmail\": \"rick.nick@test.com\",\n" +
-                "\t\t\"scope\": \"Production\",\n" +
-                "\t\t\"summary\": \"T-Vault\",\n" +
-                "\t\t\"tag\": \"T-Vault\",\n" +
-                "\t\t\"tier\": \"Tier II\",\n" +
-                "\t\t\"workflowStatus\": \"Open_CCP\",\n" +
-                "\t\t\"workload\": \"Adaptive Security\"\n" +
-                "\t}\n" +
-                "\n" +
-                "}";
+        String workloadApiResponse = "{\n" +"\n" +"\t\"kind\": \"Application\",\n" +"\t\"spec\": {\n" +"\t\t\"akmid\": \"103001\",\n" +"\t\t\"brtContactEmail\": \" testspec@mail.com\",\n" +"\t\t\"businessUnit\": \"\",\n" +"\t\t\"classification\": \"\",\n" +"\t\t\"directorEmail\": \"abc.joe@mail.com\",\n" +"\t\t\"directorName\": \"abc amith\",\n" +"\t\t\"executiveSponsor\": \"Dar Web\",\n" +"\t\t\"opsContactEmail\": \"rick.nick@test.com\",\n" +"\t\t\"organizationalUnits\": [\"tvt\"],\n" +"\t\t\"projectLeadEmail\": \"rick.nick@test.com\",\n" + "\t\t\"scope\": \"Production\",\n" +"\t\t\"summary\": \"T-Vault\",\n" + "\t\t\"tag\": \"T-Vault\",\n" +"\t\t\"tier\": \"Tier II\",\n" +"\t\t\"workflowStatus\": \"Open_CCP\",\n" + "\t\t\"workload\": \"Adaptive Security\"\n" +"\t}\n" +"\n" +"}";
 
         Response responseNoContent = getMockResponse(HttpStatus.NO_CONTENT, true, "");
         Response readResponse = getMockResponse(HttpStatus.OK, true, "{\"data\":{\"description\":\"My first safe\",\"name\":\"mysafe01\",\"owner\":\"youremail@yourcompany.com\",\"type\":\"\"}}");
