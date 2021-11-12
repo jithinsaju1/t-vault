@@ -3410,7 +3410,7 @@ public class AzureServicePrincipalAccountsServiceTest {
 
 	@Test
 	public void testRemoveGroupFromAzureSvcAccfailure() {
-		token = userDetails.getClientToken();
+		String sampletok = userDetails.getClientToken();
 		AzureServiceAccountGroup azureSvcAccGroup = new AzureServiceAccountGroup("testaccount", "group1", "rotate");
 		userDetails = getMockUser(false);
 		ResponseEntity<String> responseEntityExpected = ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
@@ -3461,7 +3461,7 @@ public class AzureServicePrincipalAccountsServiceTest {
 
 	@Test
 	public void testRemoveGroupFromAzureSvcAccgrpconfigfailure() {
-		token = userDetails.getClientToken();
+		String sampletok = userDetails.getClientToken();
 		AzureServiceAccountGroup azureSvcAccGroup = new AzureServiceAccountGroup("testaccount", "group1", "rotate");
 		userDetails = getMockUser(false);
 		ResponseEntity<String> responseEntityExpected = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -3512,7 +3512,7 @@ public class AzureServicePrincipalAccountsServiceTest {
 
 	@Test
 	public void testRemoveGroupFromAzureSvcAccrevertgrpfail() {
-		token = userDetails.getClientToken();
+		String sampletok = userDetails.getClientToken();
 		AzureServiceAccountGroup azureSvcAccGroup = new AzureServiceAccountGroup("testaccount", "group1", "rotate");
 		userDetails = getMockUser(false);
 		ResponseEntity<String> responseEntityExpected = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -3564,7 +3564,7 @@ public class AzureServicePrincipalAccountsServiceTest {
 	public void test_removeApproleFromAzureSvcAcc_confgfail() throws Exception {
 
 		ResponseEntity<String> responseEntityExpected = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"errors\":[\"Approle configuration failed. Contact Admin \"]}");
-		String token = "5PDrOhsy4ig8L3EpsJZSLAMg";
+		String sampletok = "5PDrOhsy4ig8L3EpsJZSLAMg";
 		UserDetails userDetails = getMockUser(false);
 		AzureServiceAccountApprole serviceAccountApprole = new AzureServiceAccountApprole("testsvcname", "role1", "read");
 
@@ -3592,7 +3592,7 @@ public class AzureServicePrincipalAccountsServiceTest {
 	public void test_removeApproleFromAzureSvcAcc_confgfailure() throws Exception {
 
 		ResponseEntity<String> responseEntityExpected = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"errors\":[\"Approle configuration failed. Please try again\"]}");
-		String token = "5PDrOhsy4ig8L3EpsJZSLAMg";
+		String sampletok = "5PDrOhsy4ig8L3EpsJZSLAMg";
 		UserDetails userDetails = getMockUser(false);
 		AzureServiceAccountApprole serviceAccountApprole = new AzureServiceAccountApprole("testsvcname", "role1", "read");
 
@@ -3619,7 +3619,7 @@ public class AzureServicePrincipalAccountsServiceTest {
 	@Test
 	public void testOnboardAzureServiceAccountsuccs() {
 		userDetails = getMockUser(true);
-		token = userDetails.getClientToken();
+		String sampletok = userDetails.getClientToken();
 		AzureServiceAccount serviceAccount = generateAzureServiceAccount("svc_cce_usertestrr16");
 		String azureSvcAccName = serviceAccount.getServicePrincipalName();
 		String azureSvccAccPath = AzureServiceAccountConstants.AZURE_SVCC_ACC_PATH + azureSvcAccName;
@@ -3736,7 +3736,7 @@ public class AzureServicePrincipalAccountsServiceTest {
 	@Test
 	public void testOnboardAzureServiceAccount_fail() {
 		userDetails = getMockUser(true);
-		token = userDetails.getClientToken();
+		String sampletok = userDetails.getClientToken();
 		AzureServiceAccount serviceAccount = generateAzureServiceAccount("svc_cce_usertestrr16");
 		String azureSvcAccName = serviceAccount.getServicePrincipalName();
 		String azureSvccAccPath = AzureServiceAccountConstants.AZURE_SVCC_ACC_PATH + azureSvcAccName;
@@ -3853,7 +3853,7 @@ public class AzureServicePrincipalAccountsServiceTest {
 	@Test
 	public void testOnboardAzureServiceAccounterror() {
 		userDetails = getMockUser(true);
-		token = userDetails.getClientToken();
+		String sampletok = userDetails.getClientToken();
 		AzureServiceAccount serviceAccount = generateAzureServiceAccount("svc_cce_usertestrr16");
 		String azureSvcAccName = serviceAccount.getServicePrincipalName();
 		String azureSvccAccPath = AzureServiceAccountConstants.AZURE_SVCC_ACC_PATH + azureSvcAccName;
@@ -3977,7 +3977,7 @@ public class AzureServicePrincipalAccountsServiceTest {
 	@Test
 	public void testOnboardAzureServiceAccountactivtnfals() {
 		userDetails = getMockUser(true);
-		token = userDetails.getClientToken();
+		String sampletok = userDetails.getClientToken();
 		AzureServiceAccount serviceAccount = generateAzureServiceAccount("svc_cce_usertestrr16");
 		String azureSvcAccName = serviceAccount.getServicePrincipalName();
 		String azureSvccAccPath = AzureServiceAccountConstants.AZURE_SVCC_ACC_PATH + azureSvcAccName;
@@ -4094,7 +4094,7 @@ public class AzureServicePrincipalAccountsServiceTest {
 	@Test
 	public void testOnboardAzureServiceAccountuserpass() {
 		userDetails = getMockUser(true);
-		token = userDetails.getClientToken();
+		String sampletok = userDetails.getClientToken();
 		AzureServiceAccount serviceAccount = generateAzureServiceAccount("svc_cce_usertestrr16");
 		String azureSvcAccName = serviceAccount.getServicePrincipalName();
 		String azureSvccAccPath = AzureServiceAccountConstants.AZURE_SVCC_ACC_PATH + azureSvcAccName;
@@ -4214,7 +4214,7 @@ public class AzureServicePrincipalAccountsServiceTest {
 	@Test
 	public void testOnboardAzureServiceAccountoidc_fail() {
 		userDetails = getMockUser(true);
-		token = userDetails.getClientToken();
+		String sampletok = userDetails.getClientToken();
 		AzureServiceAccount serviceAccount = generateAzureServiceAccount("svc_cce_usertestrr16");
 		String azureSvcAccName = serviceAccount.getServicePrincipalName();
 		String azureSvccAccPath = AzureServiceAccountConstants.AZURE_SVCC_ACC_PATH + azureSvcAccName;
@@ -4343,7 +4343,7 @@ public class AzureServicePrincipalAccountsServiceTest {
 	@Test
 	public void testOnboardAzureServiceAccountoidc_forbidden() {
 		userDetails = getMockUser(true);
-		token = userDetails.getClientToken();
+		String sampletok = userDetails.getClientToken();
 		AzureServiceAccount serviceAccount = generateAzureServiceAccount("svc_cce_usertestrr16");
 		String azureSvcAccName = serviceAccount.getServicePrincipalName();
 		String azureSvccAccPath = AzureServiceAccountConstants.AZURE_SVCC_ACC_PATH + azureSvcAccName;
@@ -4479,7 +4479,7 @@ public class AzureServicePrincipalAccountsServiceTest {
 	@Test
 	public void testOnboardAzureServiceAccountoidc_notfound() {
 		userDetails = getMockUser(true);
-		token = userDetails.getClientToken();
+		String sampletok = userDetails.getClientToken();
 		AzureServiceAccount serviceAccount = generateAzureServiceAccount("svc_cce_usertestrr16");
 		String azureSvcAccName = serviceAccount.getServicePrincipalName();
 		String azureSvccAccPath = AzureServiceAccountConstants.AZURE_SVCC_ACC_PATH + azureSvcAccName;
@@ -4615,7 +4615,7 @@ public class AzureServicePrincipalAccountsServiceTest {
 	@Test
 	public void testOnboardAzureServiceAccountuserpass_isr() {
 		userDetails = getMockUser(true);
-		token = userDetails.getClientToken();
+		String sampletok = userDetails.getClientToken();
 		AzureServiceAccount serviceAccount = generateAzureServiceAccount("svc_cce_usertestrr16");
 		String azureSvcAccName = serviceAccount.getServicePrincipalName();
 		String azureSvccAccPath = AzureServiceAccountConstants.AZURE_SVCC_ACC_PATH + azureSvcAccName;
@@ -4739,7 +4739,7 @@ public class AzureServicePrincipalAccountsServiceTest {
 	@Test
 	public void testOnboardAzureServiceAccountoidc_failu() {
 		userDetails = getMockUser(true);
-		token = userDetails.getClientToken();
+		String sampletok = userDetails.getClientToken();
 		AzureServiceAccount serviceAccount = generateAzureServiceAccount("svc_cce_usertestrr16");
 		String azureSvcAccName = serviceAccount.getServicePrincipalName();
 		String azureSvccAccPath = AzureServiceAccountConstants.AZURE_SVCC_ACC_PATH + azureSvcAccName;
@@ -4877,7 +4877,7 @@ public class AzureServicePrincipalAccountsServiceTest {
 	public void test_removeAwsRoleToAzureSvcacc_succssfully_iam_ise() throws Exception {
 
 		ResponseEntity<String> responseEntityExpected = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"errors\":[\"AWS Role configuration failed. Contact Admin \"]}");
-		token = userDetails.getClientToken();
+		String sampletok = userDetails.getClientToken();
 		UserDetails userDetails = getMockUser(false);
 		AzureServiceAccountAWSRole serviceAccountAWSRole = new AzureServiceAccountAWSRole("testsvcname", "role1", "read");
 
@@ -4907,7 +4907,7 @@ public class AzureServicePrincipalAccountsServiceTest {
 	public void test_removeAwsRoleToAzureSvcacc_succssfully_iam_notauth() throws Exception {
 
 		ResponseEntity<String> responseEntityExpected = ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"errors\":[\"Access denied: No permission to remove AWS Role from this Azure service account\"]}");
-		token = userDetails.getClientToken();
+		String sampletok = userDetails.getClientToken();
 		UserDetails userDetails = getMockUser(false);
 		AzureServiceAccountAWSRole serviceAccountAWSRole = new AzureServiceAccountAWSRole("testsvcname", "role1", "read");
 
@@ -4935,7 +4935,7 @@ public class AzureServicePrincipalAccountsServiceTest {
 
 	@Test
 	public void testRemoveGroupFromAzureSvcAccnotauthor() {
-		token = userDetails.getClientToken();
+		String sampletok = userDetails.getClientToken();
 		AzureServiceAccountGroup azureSvcAccGroup = new AzureServiceAccountGroup("testaccount", "group1", "rotate");
 		userDetails = getMockUser(false);
 		ResponseEntity<String> responseEntityExpected = ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"errors\":[\"Access denied: No permission to remove groups from this Azure service principal\"]}");
@@ -4985,7 +4985,7 @@ public class AzureServicePrincipalAccountsServiceTest {
 
 	@Test
 	public void testRemoveGroupFromAzureSvcAccbadreq() {
-		token = userDetails.getClientToken();
+		String sampletok = userDetails.getClientToken();
 		AzureServiceAccountGroup azureSvcAccGroup = new AzureServiceAccountGroup("testaccount", "group1", "rotate");
 		userDetails = getMockUser(false);
 		ResponseEntity<String> responseEntityExpected = ResponseEntity.status(HttpStatus.BAD_REQUEST)
@@ -5035,7 +5035,7 @@ public class AzureServicePrincipalAccountsServiceTest {
 
 	@Test
 	public void testRemoveGroupFromAzureSvcAccbadrequ() {
-		token = userDetails.getClientToken();
+		String sampletok = userDetails.getClientToken();
 		AzureServiceAccountGroup azureSvcAccGroup = new AzureServiceAccountGroup("testaccount", "", "rotate");
 		userDetails = getMockUser(false);
 		ResponseEntity<String> responseEntityExpected = ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"errors\":[\"Failed to remove group from Azure service principal. Group association to Azure service principal not found\"]}");
@@ -5084,7 +5084,7 @@ public class AzureServicePrincipalAccountsServiceTest {
 
 	@Test
 	public void testRemoveGroupFromAzureSvcAccerror() {
-		token = userDetails.getClientToken();
+		String sampletok = userDetails.getClientToken();
 		AzureServiceAccountGroup azureSvcAccGroup = new AzureServiceAccountGroup("testaccount", "", "rotate");
 		userDetails = getMockUser(false);
 		ResponseEntity<String> responseEntityExpected = ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"errors\":[\"Error Fetching existing Azure service principal info. please check the path specified\"]}");
@@ -5135,7 +5135,7 @@ public class AzureServicePrincipalAccountsServiceTest {
 	@Test
 	public void testRemoveGroupFromAzureSvcAccOidcfail() {
 		userDetails = getMockUser(false);
-		token = userDetails.getClientToken();
+		String sampletok = userDetails.getClientToken();
 		AzureServiceAccountGroup azureSvcAccGroup = new AzureServiceAccountGroup("testaccount", "group1", "rotate");
 		ResponseEntity<String> responseEntityExpected = ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
 				.body("{\"Message\":\"Group not available or deleted from AD, removed the group assignment and permissions \"}");
@@ -5201,7 +5201,7 @@ public class AzureServicePrincipalAccountsServiceTest {
 	@Test
 	public void testRemoveGroupFromAzureSvcAccOidcrevert() {
 		userDetails = getMockUser(false);
-		token = userDetails.getClientToken();
+		String sampletok = userDetails.getClientToken();
 		AzureServiceAccountGroup azureSvcAccGroup = new AzureServiceAccountGroup("testaccount", "group1", "rotate");
 		ResponseEntity<String> responseEntityExpected = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"errors\":[\"Group configuration failed. Contact Admin \"]}");
 		Response responseNoContent = getMockResponse(HttpStatus.NO_CONTENT, true, "");
@@ -5269,7 +5269,7 @@ public class AzureServicePrincipalAccountsServiceTest {
 
 		ResponseEntity<String> responseEntityExpected = ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
 				.body("{\"errors\":[\"Either Approle doesn't exists or you don't have enough permission to remove this approle from Azure Service Principal\"]}");
-		String token = "5PDrOhsy4ig8L3EpsJZSLAMg";
+		String sampletok = "5PDrOhsy4ig8L3EpsJZSLAMg";
 		UserDetails userDetails = getMockUser(false);
 		AzureServiceAccountApprole serviceAccountApprole = new AzureServiceAccountApprole("testsvcname", "role1", "read");
 
@@ -5298,7 +5298,7 @@ public class AzureServicePrincipalAccountsServiceTest {
 
 		ResponseEntity<String> responseEntityExpected = ResponseEntity.status(HttpStatus.BAD_REQUEST)
 				.body("{\"errors\":[\"Failed to remove approle from the Service Account\"]}");
-		token = userDetails.getClientToken();
+		String sampletok = userDetails.getClientToken();
 		UserDetails userDetails = getMockUser(false);
 		AzureServiceAccountApprole serviceAccountApprole = new AzureServiceAccountApprole("testsvcname", "role1", "read");
 
@@ -5327,7 +5327,7 @@ public class AzureServicePrincipalAccountsServiceTest {
 
 		ResponseEntity<String> responseEntityExpected = ResponseEntity.status(HttpStatus.BAD_REQUEST)
 				.body("{\"errors\":[\"Access denied: No permission to remove approle from Service Account\"]}");
-		token = userDetails.getClientToken();
+		String sampletok = userDetails.getClientToken();
 		UserDetails userDetails = getMockUser(false);
 		AzureServiceAccountApprole serviceAccountApprole = new AzureServiceAccountApprole("testsvcname", "role1", "read");
 
@@ -5355,7 +5355,7 @@ public class AzureServicePrincipalAccountsServiceTest {
 
 		ResponseEntity<String> responseEntityExpected = ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"errors\":[\"Transfer Azure Service " +
 				"Principal failed. New owner association failed.\"]}");
-		token = userDetails.getClientToken();
+		
 		UserDetails userDetails = getMockUser(false);
 		String servicePrincipalName = "svc_cce_usertestrr1";
 		String newOwner = "user2";
